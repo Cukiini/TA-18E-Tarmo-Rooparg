@@ -12,11 +12,31 @@ using Android.Widget;
 
 namespace HelloWorld
 {
+    [Activity(Label = "SecondActivity")]
     public class SecondActivity : Activity
     {
-        protected override void OnPostCreate(Bundle savedInstanceState)
+
+        TextView _textview;
+        Button _button;
+        EditText _textfield;
+
+
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            base.OnPostCreate(savedInstanceState);
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.second_layout);
+            //Create app here
+            _textview = FindViewById<TextView>(Resource.Id.textview1);
+            _button = FindViewById<Button>(Resource.Id.button1);
+            _textfield = FindViewById<EditText>(Resource.Id.editText1);
+
+            _button.Click += Button_Click;
+        }
+
+        private void Button_Click(object sender, EventArgs e)
+        {
+            _textview.Text = "tekst muutus";
+            _textview.Text = _textfield.Text;
         }
     }
 }
