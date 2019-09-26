@@ -23,22 +23,26 @@ namespace LinearLayout
 
             FloatingActionButton fab = FindViewById<FloatingActionButton>(Resource.Id.fab);
             fab.Click += FabOnClick;
+
+            SetContentView(Resource.Layout.activity_main);
+            //Set our view from the "main" layout
+
+            /*var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "My Toolbar";
+            */
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu_main, menu);
-            return true;
+            return base.OnCreateOptionsMenu(menu);
         }
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            int id = item.ItemId;
-            if (id == Resource.Id.action_settings)
-            {
-                return true;
-            }
-
+            Toast.MakeText(this, "Action selected " + item.TitleFormatted,
+                ToastLength.Short).Show();
             return base.OnOptionsItemSelected(item);
         }
 
